@@ -1,0 +1,162 @@
+{
+  "id": "brain-memory",
+  "kind": "memory",
+  "name": "Brain Memory",
+  "description": "飞书驱动的工作记忆插件 - 自动采集飞书数据构建结构化工作记忆，按项目上下文注入记忆",
+  "uiHints": {
+    "feishu.appId": {
+      "label": "飞书 App ID",
+      "placeholder": "cli_xxx",
+      "help": "飞书应用的 App ID"
+    },
+    "feishu.appSecret": {
+      "label": "飞书 App Secret",
+      "sensitive": true,
+      "placeholder": "xxx",
+      "help": "飞书应用的 App Secret"
+    },
+    "embedding.apiKey": {
+      "label": "Embedding API Key",
+      "sensitive": true,
+      "placeholder": "sk-xxx",
+      "help": "用于向量化的 API Key"
+    },
+    "embedding.baseUrl": {
+      "label": "Embedding API Base URL",
+      "placeholder": "https://api.openai.com/v1",
+      "help": "API Base URL，如使用 MiniMax 则填 https://api.minimax.chat/v1"
+    },
+    "embedding.model": {
+      "label": "Embedding Model",
+      "placeholder": "text-embedding-3-small",
+      "help": "Embedding 模型名称"
+    },
+    "sources.chats": {
+      "label": "采集群聊/私聊",
+      "help": "是否采集飞书群聊和私聊消息"
+    },
+    "sources.docs": {
+      "label": "采集文档",
+      "help": "是否采集飞书文档内容"
+    },
+    "sources.meetings": {
+      "label": "采集会议纪要",
+      "help": "是否采集飞书会议纪要"
+    },
+    "sources.tasks": {
+      "label": "采集任务",
+      "help": "是否采集飞书任务"
+    },
+    "scan.schedule": {
+      "label": "同步时间",
+      "placeholder": "0 2 * * *",
+      "help": "Cron 表达式，默认每天凌晨2:00"
+    },
+    "scan.batchWindowHours": {
+      "label": "批次窗口",
+      "placeholder": "5",
+      "help": "消息攒批处理的时间窗口（小时）"
+    },
+    "memory.importanceThreshold": {
+      "label": "重要性阈值",
+      "placeholder": "0.3",
+      "help": "低于此重要性的内容不存储"
+    }
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "feishu": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "appId": {
+            "type": "string"
+          },
+          "appSecret": {
+            "type": "string"
+          }
+        }
+      },
+      "embedding": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "apiKey": {
+            "type": "string"
+          },
+          "baseUrl": {
+            "type": "string"
+          },
+          "model": {
+            "type": "string"
+          }
+        }
+      },
+      "sources": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "chats": {
+            "type": "boolean"
+          },
+          "docs": {
+            "type": "boolean"
+          },
+          "meetings": {
+            "type": "boolean"
+          },
+          "tasks": {
+            "type": "boolean"
+          }
+        }
+      },
+      "scan": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "schedule": {
+            "type": "string"
+          },
+          "batchWindowHours": {
+            "type": "number"
+          },
+          "initialRange": {
+            "type": "string"
+          }
+        }
+      },
+      "memory": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "importanceThreshold": {
+            "type": "number"
+          },
+          "archiveAfterDays": {
+            "type": "number"
+          },
+          "maxPerDay": {
+            "type": "number"
+          }
+        }
+      },
+      "report": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "autoGenerate": {
+            "type": "boolean"
+          },
+          "time": {
+            "type": "string"
+          },
+          "channel": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
