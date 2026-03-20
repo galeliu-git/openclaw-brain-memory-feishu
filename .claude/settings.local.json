@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run:*)",
+      "Bash(openclaw gateway:*)",
+      "Bash(openclaw plugins:*)",
+      "Bash(node dist/index.js)",
+      "Bash(openclaw doctor:*)",
+      "Bash(openclaw tools:*)",
+      "Bash(npm install:*)"
+    ]
+  }
+}
